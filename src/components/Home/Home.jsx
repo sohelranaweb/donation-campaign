@@ -3,7 +3,7 @@ import DonationData from "../DonationData/DonationData";
 
 const Home = () => {
   const donationDatas = useLoaderData();
-  console.log(donationDatas);
+
   return (
     <div>
       <h1>Banner section here</h1>

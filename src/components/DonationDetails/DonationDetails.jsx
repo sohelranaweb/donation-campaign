@@ -1,17 +1,36 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 const DonationDetails = () => {
   const [donation, setDonation] = useState({});
   const { id } = useParams();
   const donations = useLoaderData();
-  console.log(donations);
+
   useEffect(() => {
     const findDonation = donations.find((donation) => donation.id === id);
     setDonation(findDonation);
   }, [id, donations]);
-  console.log(donation);
+
   const { picture, price, title, description, text_button_bg_color } = donation;
+  const handleAddToDonation = () => {
+    const addedDonationArray = [];
+    const donationItems = JSON.parse(localStorage.getItem("donations"));
+    if (!donationItems) {
+      addedDonationArray.push(donation);
+      localStorage.setItem("donations", JSON.stringify(addedDonationArray));
+      swal("Good job!", "successfully donate!", "success");
+    } else {
+      const isExists = donationItems.find((donation) => donation.id === id);
+      if (!isExists) {
+        addedDonationArray.push(...donationItems, donation);
+        localStorage.setItem("donations", JSON.stringify(addedDonationArray));
+        swal("Good job!", "successfully donate", "success");
+      } else {
+        swal("Error!", "already Donated!", "error");
+      }
+    }
+  };
   return (
     <div>
       <div className="relative flex  flex-col rounded-xl bg-white ">
@@ -25,6 +44,7 @@ const DonationDetails = () => {
         </div>
         <div className="p-6 relative -mt-[92px] bg-[#0B0B0B7F]  rounded-b-md">
           <button
+            onClick={handleAddToDonation}
             style={{ backgroundColor: text_button_bg_color }}
             className="px-6  py-2 text-xl font-medium text-white rounded-md"
             type="button"
