@@ -48,7 +48,7 @@ const Statistics = () => {
     );
   };
   return (
-    <div>
+    <div className="mb-20">
       <ResponsiveContainer width="100%" height={400}>
         <PieChart width={400} height={400}>
           <Pie
