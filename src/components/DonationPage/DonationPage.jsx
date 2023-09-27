@@ -10,10 +10,10 @@ const DonationPage = ({ donation }) => {
     text_button_bg_color,
   } = donation;
   return (
-    <div>
+    <div className="lg:px-0 pl-5 md:px-4">
       <div
         style={{ backgroundColor: card_bg_color }}
-        className="relative flex w-full max-w-[48rem] flex-row rounded-xl shadow-md"
+        className="relative flex lg:w-full md:w-full max-w-[48rem] w-96 flex-row rounded-xl shadow-md"
       >
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
           <img

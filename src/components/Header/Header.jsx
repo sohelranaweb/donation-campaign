@@ -4,9 +4,13 @@ import Logo from "/src/assets/Logo.png";
 const Header = () => {
   return (
     <div>
-      <nav className="flex justify-between items-center mt-12 max-w-6xl mx-auto">
-        <img className="w-[232px] h-[72px]" src={Logo} alt="" />
-        <ul className="flex gap-4 py-5">
+      <nav className="lg:flex md:flex flex-row lg:justify-between md:justify-around items-center mt-12 lg:max-w-6xl lg:mx-auto">
+        <img
+          className="lg:w-[232px] lg:h-[72px] lg:ml-0 ml-16"
+          src={Logo}
+          alt=""
+        />
+        <ul className="lg:flex  flex justify-center gap-4 py-5">
           <li>
             <NavLink
               to="/"

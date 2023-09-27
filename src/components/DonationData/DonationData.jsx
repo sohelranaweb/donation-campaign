@@ -11,14 +11,19 @@ const DonationData = ({ donation }) => {
     text_button_bg_color,
   } = donation;
   return (
-    <div>
+    <div className="lg:pl-0 pl-5">
       <Link to={`/donations/${id}`}>
         <div
-          className="relative flex w-[275px] flex-col rounded-xl shadow-md"
+          className="relative flex lg:w-[275px] w-96 md:w-80 flex-col rounded-xl shadow-md"
           style={{ backgroundColor: card_bg_color }}
         >
           <div className="relative">
-            <img src={picture} alt="img-blur-shadow" layout="fill" />
+            <img
+              className="w-96 md:w-80"
+              src={picture}
+              alt="img-blur-shadow"
+              layout="fill"
+            />
           </div>
           <div className="my-5 ml-6">
             <button
