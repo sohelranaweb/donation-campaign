@@ -32,14 +32,13 @@ const DonationDetails = () => {
     }
   };
   return (
-    <div>
+    <div className="lg:px-0 px-3">
       <div className="relative flex  flex-col rounded-xl bg-white ">
         <div className="relative ">
           <img
             className="w-full relative rounded-md"
             src={picture}
             alt="img-blur-shadow"
-            layout="fill"
           />
         </div>
         <div className="p-6 relative -mt-[92px] bg-[#0B0B0B7F]  rounded-b-md">

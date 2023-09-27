@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const DonationData = ({ donation }) => {
   const {
@@ -18,12 +19,7 @@ const DonationData = ({ donation }) => {
           style={{ backgroundColor: card_bg_color }}
         >
           <div className="relative">
-            <img
-              className="w-96 md:w-80"
-              src={picture}
-              alt="img-blur-shadow"
-              layout="fill"
-            />
+            <img className="w-96 md:w-80" src={picture} alt="img-blur-shadow" />
           </div>
           <div className="my-5 ml-6">
             <button
@@ -49,5 +45,7 @@ const DonationData = ({ donation }) => {
     </div>
   );
 };
-
+DonationData.propTypes = {
+  donation: PropTypes.object,
+};
 export default DonationData;

@@ -1,7 +1,11 @@
 const ErrorPage = () => {
   return (
-    <div>
-      <h1>Error!!!</h1>
+    <div className="mt-24 text-center">
+      <h1 className="text-3xl font-bold text-red-400">Error!!!</h1>
+
+      <h1 className="text-3xl font-bold text-red-400">
+        Something went wrong!!
+      </h1>
     </div>
   );
 };

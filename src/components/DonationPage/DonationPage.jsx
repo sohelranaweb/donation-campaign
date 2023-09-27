@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
 const DonationPage = ({ donation }) => {
   const {
-    id,
     picture,
     title,
     category,
@@ -56,6 +56,9 @@ const DonationPage = ({ donation }) => {
       </div>
     </div>
   );
+};
+DonationPage.propTypes = {
+  donation: PropTypes.object,
 };
 
 export default DonationPage;
