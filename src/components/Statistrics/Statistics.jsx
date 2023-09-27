@@ -1,60 +1,57 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 import { Cell, Pie, PieChart, ResponsiveContainer, Legend } from "recharts";
 
-// const totalDonations = 12;
-// const donationItems = JSON.parse(localStorage.getItem("donations"));
-// const donationCount = donationItems ? donationItems.length : 0;
-
-// console.log("Number of donations:", donationCount);
-const totalDonations = 12;
-const donationItemsFromStorage = localStorage.getItem("donations");
-const donationItems = donationItemsFromStorage
-  ? JSON.parse(donationItemsFromStorage)
-  : [];
-const donationCount = donationItems ? donationItems.length : 0;
-
-console.log("Number of donations:", donationCount);
-
-const COLORS = ["#0088FE", "#00C49F"];
-
-const RADIAN = Math.PI / 180;
-
-const data = [
-  { name: "totalDonations", value: totalDonations },
-  { name: "donationCount", value: donationCount },
-];
-
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
 const Statistics = () => {
+  const donations = useLoaderData();
+  const totalDonations = donations.length;
+  console.log(totalDonations);
+
+  const donationItemsFromStorage = localStorage.getItem("donations");
+  const donationItems = donationItemsFromStorage
+    ? JSON.parse(donationItemsFromStorage)
+    : [];
+  const YourDonation = donationItems ? donationItems.length : 0;
+
+  console.log("Number of donations:", YourDonation);
+
+  const COLORS = ["#FF444A", "#00C49F"];
+
+  const RADIAN = Math.PI / 180;
+
+  const data = [
+    { name: "TotalDonations", value: totalDonations - YourDonation },
+    { name: "YourDonation", value: YourDonation },
+  ];
+
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(1)}%`}
+      </text>
+    );
+  };
   return (
     <div>
-      <h1>Statistics page</h1>
-      <ResponsiveContainer width="100%" height={500}>
+      <ResponsiveContainer width="100%" height={400}>
         <PieChart width={400} height={400}>
           <Pie
             data={data}
@@ -62,7 +59,7 @@ const Statistics = () => {
             cy="50%"
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={120}
             fill="#8884d8"
             dataKey="value"
           >
@@ -78,7 +75,7 @@ const Statistics = () => {
             iconType="square"
             layout="horizontal"
             verticalAlign="bottom"
-            align="left"
+            align="center"
             formatter={(value, entry) => (
               <span style={{ color: entry.color }}>{value}</span>
             )}
